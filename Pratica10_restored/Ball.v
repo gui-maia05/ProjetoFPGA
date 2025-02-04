@@ -83,6 +83,7 @@ module Ball (
 
     // Desenhar a bola
     assign ball_rgb = BALL_COLOR;
-    assign ball_on = (ball_x <= ball_x + BALL_SIZE) && (ball_y <= ball_y + BALL_SIZE);
+    assign ball_on = (pixel_x >= ball_x) && (pixel_x < ball_x + BALL_SIZE) && (pixel_y >= ball_y) && (pixel_y < ball_y + BALL_SIZE);
+
 
 endmodule
