@@ -28,18 +28,6 @@ module Pratica10(
 	reg [11:0] rgb_reg;
 	wire [11:0] rgb_next;
 
-	// Sinais para a bola
-	wire [9:0] ball_x, ball_y;   // Posição da bola
-	wire ball_on;                // Indica se a bola está sendo desenhada
-	wire [11:0] ball_rgb;        // Cor da bola
-
-	// Sinais da raquete do jogador
-	wire [9:0] paddle_y;
-	wire paddle_up, paddle_down;
-
-	assign paddle_up = ~KEY[0];   // Botão 0 sobe
-	assign paddle_down = ~KEY[1]; // Botão 1 desce
-
 	assign clk = MAX10_CLK1_50;
 	assign async_rstn = ~SW[0];
 
@@ -66,17 +54,6 @@ module Pratica10(
 								.p_tick(pixel_tick), 
 								.pixel_x(pixel_x), 
 								.pixel_y(pixel_y));
-
-	Ball ball_unit (.clk(clk),
-    					.rstn(sync_rstn),
-    					.refr_tick(pixel_tick),
-    					.paddle_y_l(150),  // TEMPORÁRIO: posição fixa da raquete esquerda
-    					.paddle_y_r(150),  // TEMPORÁRIO: posição fixa da raquete direita
-    					.ball_rgb(ball_rgb),
-    					.ball_on(ball_on),
-    					.ball_x(ball_x),
-    					.ball_y(ball_y));
-							
 	
 	PixelGen px_gen (.clk(clk), 
 						  .rstn(sync_rstn), 
@@ -89,14 +66,6 @@ module Pratica10(
 						  .r(rgb_next[11:8]), 
 						  .g(rgb_next[7:4]), 
 						  .b(rgb_next[3:0]));
-
-	Paddle paddle_unit (.clk(clk),
-    					.rstn(sync_rstn),
-    					.up(paddle_up),
-    					.down(paddle_down),
-    					.refr_tick(pixel_tick),
-    					.paddle_y(paddle_y));
-
 						  
 	// rgb buffer
 	always@(posedge clk)
