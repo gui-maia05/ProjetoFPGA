@@ -106,4 +106,5 @@ set_global_assignment -name VERILOG_FILE EdgeDetector.v
 set_global_assignment -name VERILOG_FILE DirectionController.v
 set_global_assignment -name VERILOG_FILE AsyncInputSynchronizer.v
 set_global_assignment -name SDC_FILE Pratica10.SDC
+set_global_assignment -name VERILOG_FILE Ball.v
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

@@ -1,27 +1,24 @@
-// 4-State Moore state machine
-
-// A Moore machine's outputs are dependent only on the current state.
-// The output is written only when the state changes.  (State
-// transitions are synchronous.)
-
 module DirectionController
 (
 	input	clk, rstn, turn_right, turn_left,
-	output reg [1:0] data_out // bit 0: y (row) count_enable,
-	                          // bit 1: y (row) updown (1 = up, 0 = down)
+	output reg [3:0] data_out // bit 0: x (column) count_enable,
+	                          // bit 1: x (column) updown,
+	                          // bit 2: y (row) count_enable,
+	                          // bit 3: y (row) updown
 );
 	
 	// Signal declaration
-	reg state_reg, state_next;
+	reg [1:0] state_reg, state_next;
 				
 	// Declare states
-	localparam UP = 1'b0, 
-	           DOWN = 1'b1;
+	localparam [1:0] stop = 2'b00, 
+	                 left = 2'b01, 
+					 right = 2'b10;
 	
 	// state register
 	always@(posedge clk, negedge rstn)
 		if(!rstn)
-			state_reg <= UP;
+			state_reg <= stop;
 		else
 			state_reg <= state_next;
 	
@@ -29,12 +26,15 @@ module DirectionController
 	always @ (state_reg) 
 	begin
 		case(state_reg)
-			UP:
-				data_out = 2'b11; // Enable count, move up
-			DOWN:
-				data_out = 2'b10; // Enable count, move down
+			stop:
+				data_out = 4'b0000;
+			left:
+				data_out = 4'b0011;
+			right:
+				data_out = 4'b0001;
+				
 			default:
-				data_out = 2'b11;
+				data_out = 4'b0000;
 		endcase
 	end
 		
@@ -42,16 +42,19 @@ module DirectionController
 	always @ *
 	begin
 		case(state_reg)
-			UP:
-				if(turn_left) state_next = DOWN;
-				else state_next = UP;
-				
-			DOWN:
-				if(turn_right) state_next = UP;
-				else state_next = DOWN;
-				
+			stop:
+				if(turn_right) state_next = left;
+				else if(turn_left) state_next = right;
+				else state_next = stop;
+			left:
+				if(turn_right) state_next = left;
+				else(turn_left) state_next = stop;	
+			right:
+				if(turn_right) state_next = stop;
+				else(turn_left) state_next = right;
+
 			default:
-				state_next = UP;
+				state_next = stop;
 		endcase
 	end
 endmodule

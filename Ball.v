@@ -1,69 +1,48 @@
-module Ball(
-    input wire clk, rstn,
-    input wire video_on, p_tick,
-    input wire [9:0] pixel_x, pixel_y,
-    input wire [9:0] paddle_x, paddle_y, paddle_height,  // Posição da raquete
-    output reg [3:0] r, g, b
+module Ball (
+    input wire clk, rstn, refr_tick,
+    input wire [9:0] x, y, paddle_x, paddle_y,
+    output wire [11:0] ball_rgb,
+    output wire ball_on
 );
-
-    // Definições da bola
+    localparam MAX_X = 640;
+    localparam MAX_Y = 480;
+    
     localparam BALL_SIZE = 8;
-    localparam SCREEN_WIDTH = 640;
-    localparam SCREEN_HEIGHT = 480;
-    localparam BALL_COLOR = 12'hF00;  // Vermelho
-
-    reg [9:0] ball_x_reg, ball_y_reg, ball_x_next, ball_y_next;
-    reg ball_x_dir, ball_y_dir;  // 0 = esquerda/cima, 1 = direita/baixo
-
-    // Atualização da posição da bola
+    localparam BALL_COLOR = 12'hF00;
+    
+    integer ball_x = 320;  // Posição inicial
+    integer ball_y = 240;
+    integer ball_dx = 2;   // Velocidade X
+    integer ball_dy = -2;  // Velocidade Y
+    
+    assign ball_rgb = BALL_COLOR;
+    assign ball_on = (x > ball_x && x < ball_x + BALL_SIZE) &&
+                     (y > ball_y && y < ball_y + BALL_SIZE);
+    
     always @(posedge clk, negedge rstn) begin
         if (!rstn) begin
-            ball_x_reg <= SCREEN_WIDTH / 2;
-            ball_y_reg <= SCREEN_HEIGHT / 2;
-            ball_x_dir <= 0;  // Começa indo para a esquerda
-            ball_y_dir <= 0;  // Começa indo para cima
-        end else begin
-            ball_x_reg <= ball_x_next;
-            ball_y_reg <= ball_y_next;
+            ball_x <= 320;
+            ball_y <= 240;
+            ball_dx <= 2;
+            ball_dy <= -2;
+        end else if (refr_tick) begin
+            // Movimento da bola
+            ball_x <= ball_x + ball_dx;
+            ball_y <= ball_y + ball_dy;
+            
+            // Colisão com paredes
+            if (ball_x <= 0 || ball_x >= (MAX_X - BALL_SIZE))
+                ball_dx <= -ball_dx;
+            
+            if (ball_y <= 0)  // Bateu no topo
+                ball_dy <= -ball_dy;
+            
+            // Colisão com a barra
+            if (ball_y + BALL_SIZE >= paddle_y && 
+                ball_x + BALL_SIZE >= paddle_x && 
+                ball_x <= paddle_x + 100) begin
+                ball_dy <= -ball_dy;
+            end
         end
     end
-
-    always @* begin
-        // Movimento normal
-        ball_x_next = ball_x_reg + (ball_x_dir ? 2 : -2);
-        ball_y_next = ball_y_reg + (ball_y_dir ? 2 : -2);
-
-        // Rebote na parede superior/inferior
-        if (ball_y_reg <= 0)
-            ball_y_dir = 1;  // Muda para baixo
-        else if (ball_y_reg + BALL_SIZE >= SCREEN_HEIGHT)
-            ball_y_dir = 0;  // Muda para cima
-
-        // Rebote na raquete
-        if ((ball_x_reg <= paddle_x + 10) &&   // Toca a raquete
-            (ball_y_reg + BALL_SIZE >= paddle_y) &&
-            (ball_y_reg <= paddle_y + paddle_height)) begin
-            ball_x_dir = 1;  // Muda para a direita
-        end
-
-        // Se a bola sair completamente da tela pela esquerda (perdeu)
-        if (ball_x_reg <= 0)
-            ball_x_next = SCREEN_WIDTH / 2;  // Reseta posição
-
-        // Se a bola sair pela direita, apenas continua o jogo
-        if (ball_x_reg + BALL_SIZE >= SCREEN_WIDTH)
-            ball_x_dir = 0;  // Muda para a esquerda
-    end
-
-    // Desenha a bola
-    wire ball_on = (pixel_x >= ball_x_reg) && (pixel_x < ball_x_reg + BALL_SIZE) &&
-                   (pixel_y >= ball_y_reg) && (pixel_y < ball_y_reg + BALL_SIZE);
-
-    always @* begin
-        if (~video_on)
-            {r, g, b} = 12'h000;
-        else if (ball_on)
-            {r, g, b} = BALL_COLOR;
-    end
-
 endmodule

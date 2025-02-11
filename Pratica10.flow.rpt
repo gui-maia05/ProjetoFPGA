@@ -1,5 +1,5 @@
 Flow report for Pratica10
-Tue Jan 21 19:00:58 2025
+Mon Feb 10 19:34:39 2025
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,17 +40,17 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Tue Jan 21 19:00:48 2025       ;
+; Flow Status                        ; Successful - Mon Feb 10 19:34:33 2025       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; Pratica10                                   ;
 ; Top-level Entity Name              ; Pratica10                                   ;
 ; Family                             ; MAX 10                                      ;
 ; Device                             ; 10M50DAF484C7G                              ;
 ; Timing Models                      ; Final                                       ;
-; Total logic elements               ; 453 / 49,760 ( < 1 % )                      ;
-;     Total combinational functions  ; 443 / 49,760 ( < 1 % )                      ;
-;     Dedicated logic registers      ; 107 / 49,760 ( < 1 % )                      ;
-; Total registers                    ; 107                                         ;
+; Total logic elements               ; 361 / 49,760 ( < 1 % )                      ;
+;     Total combinational functions  ; 350 / 49,760 ( < 1 % )                      ;
+;     Dedicated logic registers      ; 94 / 49,760 ( < 1 % )                       ;
+; Total registers                    ; 94                                          ;
 ; Total pins                         ; 27 / 360 ( 8 % )                            ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0 / 1,677,312 ( 0 % )                       ;
@@ -66,7 +66,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 01/21/2025 18:59:44 ;
+; Start date & time ; 02/10/2025 19:33:54 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; Pratica10           ;
 +-------------------+---------------------+
@@ -77,7 +77,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 264216235998406.173749318301588        ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 264216236077748.173922683402032        ; --            ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --         ;
 ; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; --          ; Top        ;
@@ -93,11 +93,11 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:35     ; 1.0                     ; 677 MB              ; 00:00:44                           ;
-; Fitter               ; 00:00:22     ; 1.0                     ; 1303 MB             ; 00:00:23                           ;
-; Assembler            ; 00:00:05     ; 1.0                     ; 603 MB              ; 00:00:05                           ;
-; Timing Analyzer      ; 00:00:08     ; 1.1                     ; 718 MB              ; 00:00:07                           ;
-; Total                ; 00:01:10     ; --                      ; --                  ; 00:01:19                           ;
+; Analysis & Synthesis ; 00:00:19     ; 1.0                     ; 668 MB              ; 00:00:42                           ;
+; Fitter               ; 00:00:12     ; 1.1                     ; 1305 MB             ; 00:00:17                           ;
+; Assembler            ; 00:00:05     ; 1.0                     ; 607 MB              ; 00:00:04                           ;
+; Timing Analyzer      ; 00:00:05     ; 1.1                     ; 718 MB              ; 00:00:05                           ;
+; Total                ; 00:00:41     ; --                      ; --                  ; 00:01:08                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -106,10 +106,10 @@ refer to the applicable agreement for further details.
 +----------------------+------------------+------------+------------+----------------+
 ; Module Name          ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
 +----------------------+------------------+------------+------------+----------------+
-; Analysis & Synthesis ; DCC5B-10002692   ; Windows 10 ; 10.0       ; x86_64         ;
-; Fitter               ; DCC5B-10002692   ; Windows 10 ; 10.0       ; x86_64         ;
-; Assembler            ; DCC5B-10002692   ; Windows 10 ; 10.0       ; x86_64         ;
-; Timing Analyzer      ; DCC5B-10002692   ; Windows 10 ; 10.0       ; x86_64         ;
+; Analysis & Synthesis ; DCC5B-10002461   ; Windows 10 ; 10.0       ; x86_64         ;
+; Fitter               ; DCC5B-10002461   ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; DCC5B-10002461   ; Windows 10 ; 10.0       ; x86_64         ;
+; Timing Analyzer      ; DCC5B-10002461   ; Windows 10 ; 10.0       ; x86_64         ;
 +----------------------+------------------+------------+------------+----------------+
 
 

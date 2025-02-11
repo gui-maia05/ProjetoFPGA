@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Pratica10
-Tue Jan 21 19:00:17 2025
+Mon Feb 10 19:34:13 2025
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -13,14 +13,16 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. State Machine - |Pratica10|PixelGen:px_gen|Square:sq|DirectionController:comb_560|state_reg
+  8. State Machine - |Pratica10|PixelGen:px_gen|Paddle:sq|DirectionController:comb_490|state_reg
   9. Registers Removed During Synthesis
- 10. General Register Statistics
- 11. Inverted Register Statistics
- 12. Multiplexer Restructuring Statistics (Restructuring Performed)
- 13. Post-Synthesis Netlist Statistics for Top Partition
- 14. Elapsed Time Per Partition
- 15. Analysis & Synthesis Messages
+ 10. Removed Registers Triggering Further Register Optimizations
+ 11. General Register Statistics
+ 12. Inverted Register Statistics
+ 13. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 14. Port Connectivity Checks: "PixelGen:px_gen|Ball:bl"
+ 15. Post-Synthesis Netlist Statistics for Top Partition
+ 16. Elapsed Time Per Partition
+ 17. Analysis & Synthesis Messages
 
 
 
@@ -46,15 +48,15 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Tue Jan 21 19:00:17 2025       ;
+; Analysis & Synthesis Status        ; Successful - Mon Feb 10 19:34:12 2025       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; Pratica10                                   ;
 ; Top-level Entity Name              ; Pratica10                                   ;
 ; Family                             ; MAX 10                                      ;
-; Total logic elements               ; 452                                         ;
-;     Total combinational functions  ; 441                                         ;
-;     Dedicated logic registers      ; 107                                         ;
-; Total registers                    ; 107                                         ;
+; Total logic elements               ; 359                                         ;
+;     Total combinational functions  ; 348                                         ;
+;     Dedicated logic registers      ; 94                                          ;
+; Total registers                    ; 94                                          ;
 ; Total pins                         ; 27                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
@@ -168,19 +170,20 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                        ;
-+----------------------------------+-----------------+------------------------+---------------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                                                          ; Library ;
-+----------------------------------+-----------------+------------------------+---------------------------------------------------------------------------------------+---------+
-; VGASync.v                        ; yes             ; User Verilog HDL File  ; C:/Users/guilherme.maia/Desktop/Pratica10/Pratica10_restored/VGASync.v                ;         ;
-; Square.v                         ; yes             ; User Verilog HDL File  ; C:/Users/guilherme.maia/Desktop/Pratica10/Pratica10_restored/Square.v                 ;         ;
-; Pratica10.v                      ; yes             ; User Verilog HDL File  ; C:/Users/guilherme.maia/Desktop/Pratica10/Pratica10_restored/Pratica10.v              ;         ;
-; PixelGen.v                       ; yes             ; User Verilog HDL File  ; C:/Users/guilherme.maia/Desktop/Pratica10/Pratica10_restored/PixelGen.v               ;         ;
-; EdgeDetector.v                   ; yes             ; User Verilog HDL File  ; C:/Users/guilherme.maia/Desktop/Pratica10/Pratica10_restored/EdgeDetector.v           ;         ;
-; DirectionController.v            ; yes             ; User Verilog HDL File  ; C:/Users/guilherme.maia/Desktop/Pratica10/Pratica10_restored/DirectionController.v    ;         ;
-; AsyncInputSynchronizer.v         ; yes             ; User Verilog HDL File  ; C:/Users/guilherme.maia/Desktop/Pratica10/Pratica10_restored/AsyncInputSynchronizer.v ;         ;
-+----------------------------------+-----------------+------------------------+---------------------------------------------------------------------------------------+---------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                   ;
++----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                               ; Library ;
++----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------------------------------+---------+
+; VGASync.v                        ; yes             ; User Verilog HDL File        ; C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/VGASync.v                ;         ;
+; Pratica10.v                      ; yes             ; User Verilog HDL File        ; C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/Pratica10.v              ;         ;
+; PixelGen.v                       ; yes             ; User Verilog HDL File        ; C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/PixelGen.v               ;         ;
+; EdgeDetector.v                   ; yes             ; User Verilog HDL File        ; C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/EdgeDetector.v           ;         ;
+; DirectionController.v            ; yes             ; User Verilog HDL File        ; C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/DirectionController.v    ;         ;
+; AsyncInputSynchronizer.v         ; yes             ; User Verilog HDL File        ; C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/AsyncInputSynchronizer.v ;         ;
+; Ball.v                           ; yes             ; User Verilog HDL File        ; C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/Ball.v                   ;         ;
+; paddle.v                         ; yes             ; Auto-Found Verilog HDL File  ; C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/paddle.v                 ;         ;
++----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------------------------------+---------+
 
 
 +-------------------------------------------------------------------+
@@ -188,20 +191,20 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+---------------------+
 ; Resource                                    ; Usage               ;
 +---------------------------------------------+---------------------+
-; Estimated Total logic elements              ; 452                 ;
+; Estimated Total logic elements              ; 359                 ;
 ;                                             ;                     ;
-; Total combinational functions               ; 441                 ;
+; Total combinational functions               ; 348                 ;
 ; Logic element usage by number of LUT inputs ;                     ;
-;     -- 4 input functions                    ; 129                 ;
-;     -- 3 input functions                    ; 71                  ;
-;     -- <=2 input functions                  ; 241                 ;
+;     -- 4 input functions                    ; 97                  ;
+;     -- 3 input functions                    ; 77                  ;
+;     -- <=2 input functions                  ; 174                 ;
 ;                                             ;                     ;
 ; Logic elements by mode                      ;                     ;
-;     -- normal mode                          ; 203                 ;
-;     -- arithmetic mode                      ; 238                 ;
+;     -- normal mode                          ; 151                 ;
+;     -- arithmetic mode                      ; 197                 ;
 ;                                             ;                     ;
-; Total registers                             ; 107                 ;
-;     -- Dedicated logic registers            ; 107                 ;
+; Total registers                             ; 94                  ;
+;     -- Dedicated logic registers            ; 94                  ;
 ;     -- I/O registers                        ; 0                   ;
 ;                                             ;                     ;
 ; I/O pins                                    ; 27                  ;
@@ -209,9 +212,9 @@ refer to the applicable agreement for further details.
 ; Embedded Multiplier 9-bit elements          ; 0                   ;
 ;                                             ;                     ;
 ; Maximum fan-out node                        ; MAX10_CLK1_50~input ;
-; Maximum fan-out                             ; 107                 ;
-; Total fan-out                               ; 1641                ;
-; Average fan-out                             ; 2.73                ;
+; Maximum fan-out                             ; 94                  ;
+; Total fan-out                               ; 1343                ;
+; Average fan-out                             ; 2.71                ;
 +---------------------------------------------+---------------------+
 
 
@@ -220,41 +223,63 @@ refer to the applicable agreement for further details.
 +-----------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+-------------------------------------------------------------------+------------------------+--------------+
 ; Compilation Hierarchy Node              ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name                                               ; Entity Name            ; Library Name ;
 +-----------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+-------------------------------------------------------------------+------------------------+--------------+
-; |Pratica10                              ; 441 (0)             ; 107 (8)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 27   ; 0            ; 0          ; |Pratica10                                                        ; Pratica10              ; work         ;
+; |Pratica10                              ; 348 (0)             ; 94 (10)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 27   ; 0            ; 0          ; |Pratica10                                                        ; Pratica10              ; work         ;
 ;    |AsyncInputSynchronizer:comb_5|      ; 0 (0)               ; 2 (2)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Pratica10|AsyncInputSynchronizer:comb_5                          ; AsyncInputSynchronizer ; work         ;
 ;    |EdgeDetector:left_key|              ; 2 (2)               ; 3 (3)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Pratica10|EdgeDetector:left_key                                  ; EdgeDetector           ; work         ;
 ;    |EdgeDetector:right_key|             ; 2 (2)               ; 3 (3)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Pratica10|EdgeDetector:right_key                                 ; EdgeDetector           ; work         ;
-;    |PixelGen:px_gen|                    ; 397 (17)            ; 68 (0)                    ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Pratica10|PixelGen:px_gen                                        ; PixelGen               ; work         ;
-;       |Square:sq|                       ; 380 (372)           ; 68 (64)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Pratica10|PixelGen:px_gen|Square:sq                              ; Square                 ; work         ;
-;          |DirectionController:comb_560| ; 8 (8)               ; 4 (4)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Pratica10|PixelGen:px_gen|Square:sq|DirectionController:comb_560 ; DirectionController    ; work         ;
-;    |VGASync:vsync_unit|                 ; 40 (40)             ; 23 (23)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Pratica10|VGASync:vsync_unit                                     ; VGASync                ; work         ;
+;    |PixelGen:px_gen|                    ; 303 (21)            ; 53 (0)                    ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Pratica10|PixelGen:px_gen                                        ; PixelGen               ; work         ;
+;       |Ball:bl|                         ; 102 (102)           ; 19 (19)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Pratica10|PixelGen:px_gen|Ball:bl                                ; Ball                   ; work         ;
+;       |Paddle:sq|                       ; 180 (176)           ; 34 (31)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Pratica10|PixelGen:px_gen|Paddle:sq                              ; Paddle                 ; work         ;
+;          |DirectionController:comb_490| ; 4 (4)               ; 3 (3)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Pratica10|PixelGen:px_gen|Paddle:sq|DirectionController:comb_490 ; DirectionController    ; work         ;
+;    |VGASync:vsync_unit|                 ; 41 (41)             ; 23 (23)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Pratica10|VGASync:vsync_unit                                     ; VGASync                ; work         ;
 +-----------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+-------------------------------------------------------------------+------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
 Encoding Type:  One-Hot
 +---------------------------------------------------------------------------------------------+
-; State Machine - |Pratica10|PixelGen:px_gen|Square:sq|DirectionController:comb_560|state_reg ;
-+-------------+-------------+-------------+-------------+-------------------------------------+
-; Name        ; state_reg.C ; state_reg.T ; state_reg.B ; state_reg.F                         ;
-+-------------+-------------+-------------+-------------+-------------------------------------+
-; state_reg.F ; 0           ; 0           ; 0           ; 0                                   ;
-; state_reg.B ; 0           ; 0           ; 1           ; 1                                   ;
-; state_reg.T ; 0           ; 1           ; 0           ; 1                                   ;
-; state_reg.C ; 1           ; 0           ; 0           ; 1                                   ;
-+-------------+-------------+-------------+-------------+-------------------------------------+
+; State Machine - |Pratica10|PixelGen:px_gen|Paddle:sq|DirectionController:comb_490|state_reg ;
++-------------+-------------+-------------+---------------------------------------------------+
+; Name        ; state_reg.F ; state_reg.T ; state_reg.B                                       ;
++-------------+-------------+-------------+---------------------------------------------------+
+; state_reg.F ; 0           ; 0           ; 0                                                 ;
+; state_reg.B ; 1           ; 0           ; 1                                                 ;
+; state_reg.T ; 1           ; 1           ; 0                                                 ;
++-------------+-------------+-------------+---------------------------------------------------+
 
 
-+-------------------------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                                          ;
-+--------------------------------------------------------------------+----------------------------------------+
-; Register name                                                      ; Reason for Removal                     ;
-+--------------------------------------------------------------------+----------------------------------------+
-; rgb_reg[4,6,9,11]                                                  ; Stuck at GND due to stuck port data_in ;
-; PixelGen:px_gen|Square:sq|DirectionController:comb_560|state_reg~4 ; Lost fanout                            ;
-; PixelGen:px_gen|Square:sq|DirectionController:comb_560|state_reg~5 ; Lost fanout                            ;
-; Total Number of Removed Registers = 6                              ;                                        ;
-+--------------------------------------------------------------------+----------------------------------------+
++----------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                     ;
++------------------------------------------+---------------------------------------------+
+; Register name                            ; Reason for Removal                          ;
++------------------------------------------+---------------------------------------------+
+; PixelGen:px_gen|Paddle:sq|y_count[1]     ; Stuck at VCC due to stuck port clock_enable ;
+; PixelGen:px_gen|Paddle:sq|y_count[9..31] ; Stuck at GND due to stuck port clock_enable ;
+; PixelGen:px_gen|Paddle:sq|y_count[6..8]  ; Stuck at VCC due to stuck port clock_enable ;
+; PixelGen:px_gen|Paddle:sq|y_count[2..5]  ; Stuck at GND due to stuck port clock_enable ;
+; rgb_reg[4,6]                             ; Stuck at GND due to stuck port data_in      ;
+; PixelGen:px_gen|Ball:bl|vx[2..8]         ; Merged with PixelGen:px_gen|Ball:bl|vx[9]   ;
+; PixelGen:px_gen|Ball:bl|vy[2..8]         ; Merged with PixelGen:px_gen|Ball:bl|vy[9]   ;
+; PixelGen:px_gen|Ball:bl|vy[0]            ; Stuck at GND due to stuck port data_in      ;
+; PixelGen:px_gen|Ball:bl|y[0]             ; Stuck at GND due to stuck port data_in      ;
+; PixelGen:px_gen|Paddle:sq|x_count[0]     ; Stuck at GND due to stuck port data_in      ;
+; PixelGen:px_gen|Ball:bl|vx[0]            ; Stuck at GND due to stuck port data_in      ;
+; PixelGen:px_gen|Ball:bl|vy[1]            ; Stuck at VCC due to stuck port data_in      ;
+; PixelGen:px_gen|Ball:bl|x[0]             ; Stuck at GND due to stuck port data_in      ;
+; PixelGen:px_gen|Ball:bl|vx[1]            ; Stuck at VCC due to stuck port data_in      ;
+; PixelGen:px_gen|Ball:bl|x[1]             ; Merged with PixelGen:px_gen|Ball:bl|y[1]    ;
+; Total Number of Removed Registers = 55   ;                                             ;
++------------------------------------------+---------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                       ;
++------------------------------+---------------------------+----------------------------------------+
+; Register name                ; Reason for Removal        ; Registers Removed due to This Register ;
++------------------------------+---------------------------+----------------------------------------+
+; PixelGen:px_gen|Ball:bl|x[0] ; Stuck at GND              ; PixelGen:px_gen|Ball:bl|vx[1]          ;
+;                              ; due to stuck port data_in ;                                        ;
++------------------------------+---------------------------+----------------------------------------+
 
 
 +------------------------------------------------------+
@@ -262,12 +287,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 107   ;
+; Total registers                              ; 94    ;
 ; Number of registers using Synchronous Clear  ; 0     ;
-; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 99    ;
+; Number of registers using Synchronous Load   ; 1     ;
+; Number of registers using Asynchronous Clear ; 84    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 92    ;
+; Number of registers using Clock Enable       ; 78    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -277,14 +302,16 @@ Encoding Type:  One-Hot
 +----------------------------------------+---------+
 ; Inverted Register                      ; Fan out ;
 +----------------------------------------+---------+
-; PixelGen:px_gen|Square:sq|x_count[6]   ; 6       ;
-; PixelGen:px_gen|Square:sq|x_count[5]   ; 6       ;
-; PixelGen:px_gen|Square:sq|x_count[2]   ; 6       ;
-; PixelGen:px_gen|Square:sq|y_count[7]   ; 6       ;
-; PixelGen:px_gen|Square:sq|y_count[4]   ; 6       ;
-; PixelGen:px_gen|Square:sq|y_count[2]   ; 6       ;
-; PixelGen:px_gen|Square:sq|y_count[1]   ; 6       ;
-; Total number of inverted registers = 7 ;         ;
+; PixelGen:px_gen|Ball:bl|y[7]           ; 4       ;
+; PixelGen:px_gen|Ball:bl|y[6]           ; 4       ;
+; PixelGen:px_gen|Ball:bl|y[5]           ; 4       ;
+; PixelGen:px_gen|Ball:bl|y[4]           ; 4       ;
+; PixelGen:px_gen|Ball:bl|x[8]           ; 6       ;
+; PixelGen:px_gen|Ball:bl|x[6]           ; 6       ;
+; PixelGen:px_gen|Paddle:sq|x_count[8]   ; 5       ;
+; PixelGen:px_gen|Paddle:sq|x_count[5]   ; 5       ;
+; PixelGen:px_gen|Paddle:sq|x_count[1]   ; 5       ;
+; Total number of inverted registers = 9 ;         ;
 +----------------------------------------+---------+
 
 
@@ -293,11 +320,29 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                       ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------+
-; 4:1                ; 29 bits   ; 58 LEs        ; 58 LEs               ; 0 LEs                  ; Yes        ; |Pratica10|PixelGen:px_gen|Square:sq|x_count[31] ;
-; 4:1                ; 28 bits   ; 56 LEs        ; 56 LEs               ; 0 LEs                  ; Yes        ; |Pratica10|PixelGen:px_gen|Square:sq|y_count[29] ;
-; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |Pratica10|PixelGen:px_gen|Square:sq|x_count[2]  ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |Pratica10|PixelGen:px_gen|Square:sq|y_count[4]  ;
+; 4:1                ; 28 bits   ; 56 LEs        ; 56 LEs               ; 0 LEs                  ; Yes        ; |Pratica10|PixelGen:px_gen|Paddle:sq|x_count[26] ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; Yes        ; |Pratica10|PixelGen:px_gen|Ball:bl|vx[9]         ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |Pratica10|PixelGen:px_gen|Paddle:sq|x_count[5]  ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |Pratica10|PixelGen:px_gen|r[0]                  ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "PixelGen:px_gen|Ball:bl"                                                                                                                                                                          ;
++--------------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port               ; Type   ; Severity ; Details                                                                                                                                                                             ;
++--------------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; paddle_x           ; Input  ; Warning  ; Input port expression (1 bits) is smaller than the input port (10 bits) it drives.  Extra input bit(s) "paddle_x[9..1]" will be connected to GND.                                   ;
+; paddle_y           ; Input  ; Warning  ; Input port expression (1 bits) is smaller than the input port (10 bits) it drives.  Extra input bit(s) "paddle_y[9..1]" will be connected to GND.                                   ;
+; paddle_width       ; Input  ; Warning  ; Input port expression (32 bits) is wider than the input port (10 bits) it drives.  The 22 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; paddle_width[6..5] ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                        ;
+; paddle_width[9..7] ; Input  ; Info     ; Stuck at GND                                                                                                                                                                        ;
+; paddle_width[4..3] ; Input  ; Info     ; Stuck at GND                                                                                                                                                                        ;
+; paddle_width[1..0] ; Input  ; Info     ; Stuck at GND                                                                                                                                                                        ;
+; paddle_width[2]    ; Input  ; Info     ; Stuck at VCC                                                                                                                                                                        ;
+; x                  ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                                                            ;
+; y                  ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                                                            ;
++--------------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
 +-----------------------------------------------------+
@@ -306,23 +351,24 @@ Encoding Type:  One-Hot
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 27                          ;
-; cycloneiii_ff         ; 107                         ;
+; cycloneiii_ff         ; 94                          ;
 ;     CLR               ; 15                          ;
-;     ENA               ; 8                           ;
-;     ENA CLR           ; 84                          ;
-; cycloneiii_lcell_comb ; 442                         ;
-;     arith             ; 238                         ;
-;         2 data inputs ; 200                         ;
-;         3 data inputs ; 38                          ;
-;     normal            ; 204                         ;
-;         0 data inputs ; 1                           ;
-;         1 data inputs ; 11                          ;
-;         2 data inputs ; 30                          ;
-;         3 data inputs ; 33                          ;
-;         4 data inputs ; 129                         ;
+;     CLR SLD           ; 1                           ;
+;     ENA               ; 10                          ;
+;     ENA CLR           ; 68                          ;
+; cycloneiii_lcell_comb ; 349                         ;
+;     arith             ; 197                         ;
+;         2 data inputs ; 134                         ;
+;         3 data inputs ; 63                          ;
+;     normal            ; 152                         ;
+;         0 data inputs ; 4                           ;
+;         1 data inputs ; 8                           ;
+;         2 data inputs ; 29                          ;
+;         3 data inputs ; 14                          ;
+;         4 data inputs ; 97                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 8.90                        ;
-; Average LUT depth     ; 5.32                        ;
+; Max LUT depth         ; 8.70                        ;
+; Average LUT depth     ; 4.97                        ;
 +-----------------------+-----------------------------+
 
 
@@ -341,62 +387,80 @@ Encoding Type:  One-Hot
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Tue Jan 21 18:59:41 2025
+    Info: Processing started: Mon Feb 10 19:33:53 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Pratica10 -c Pratica10
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
 Info (12021): Found 1 design units, including 1 entities, in source file vgasync.v
-    Info (12023): Found entity 1: VGASync File: C:/Users/guilherme.maia/Desktop/Pratica10/Pratica10_restored/VGASync.v Line: 1
-Info (12021): Found 1 design units, including 1 entities, in source file square.v
-    Info (12023): Found entity 1: Square File: C:/Users/guilherme.maia/Desktop/Pratica10/Pratica10_restored/Square.v Line: 1
+    Info (12023): Found entity 1: VGASync File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/VGASync.v Line: 1
+Warning (12019): Can't analyze file -- file Square.v is missing
 Info (12021): Found 1 design units, including 1 entities, in source file pratica10.v
-    Info (12023): Found entity 1: Pratica10 File: C:/Users/guilherme.maia/Desktop/Pratica10/Pratica10_restored/Pratica10.v Line: 6
+    Info (12023): Found entity 1: Pratica10 File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/Pratica10.v Line: 6
 Info (12021): Found 1 design units, including 1 entities, in source file pixelgen.v
-    Info (12023): Found entity 1: PixelGen File: C:/Users/guilherme.maia/Desktop/Pratica10/Pratica10_restored/PixelGen.v Line: 1
+    Info (12023): Found entity 1: PixelGen File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/PixelGen.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file edgedetector.v
-    Info (12023): Found entity 1: EdgeDetector File: C:/Users/guilherme.maia/Desktop/Pratica10/Pratica10_restored/EdgeDetector.v Line: 1
+    Info (12023): Found entity 1: EdgeDetector File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/EdgeDetector.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file directioncontroller.v
-    Info (12023): Found entity 1: DirectionController File: C:/Users/guilherme.maia/Desktop/Pratica10/Pratica10_restored/DirectionController.v Line: 7
+    Info (12023): Found entity 1: DirectionController File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/DirectionController.v Line: 7
 Info (12021): Found 1 design units, including 1 entities, in source file asyncinputsynchronizer.v
-    Info (12023): Found entity 1: AsyncInputSynchronizer File: C:/Users/guilherme.maia/Desktop/Pratica10/Pratica10_restored/AsyncInputSynchronizer.v Line: 1
-Critical Warning (10846): Verilog HDL Instantiation warning at Square.v(59): instance has no name File: C:/Users/guilherme.maia/Desktop/Pratica10/Pratica10_restored/Square.v Line: 59
-Critical Warning (10846): Verilog HDL Instantiation warning at Pratica10.v(36): instance has no name File: C:/Users/guilherme.maia/Desktop/Pratica10/Pratica10_restored/Pratica10.v Line: 36
+    Info (12023): Found entity 1: AsyncInputSynchronizer File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/AsyncInputSynchronizer.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file ball.v
+    Info (12023): Found entity 1: Ball File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/Ball.v Line: 1
+Warning (10236): Verilog HDL Implicit Net warning at PixelGen.v(35): created implicit net for "paddle_x" File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/PixelGen.v Line: 35
+Warning (10236): Verilog HDL Implicit Net warning at PixelGen.v(36): created implicit net for "paddle_y" File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/PixelGen.v Line: 36
+Critical Warning (10846): Verilog HDL Instantiation warning at Pratica10.v(36): instance has no name File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/Pratica10.v Line: 36
 Info (12127): Elaborating entity "Pratica10" for the top level hierarchy
-Info (12128): Elaborating entity "AsyncInputSynchronizer" for hierarchy "AsyncInputSynchronizer:comb_5" File: C:/Users/guilherme.maia/Desktop/Pratica10/Pratica10_restored/Pratica10.v Line: 36
-Info (12128): Elaborating entity "EdgeDetector" for hierarchy "EdgeDetector:right_key" File: C:/Users/guilherme.maia/Desktop/Pratica10/Pratica10_restored/Pratica10.v Line: 41
-Info (12128): Elaborating entity "VGASync" for hierarchy "VGASync:vsync_unit" File: C:/Users/guilherme.maia/Desktop/Pratica10/Pratica10_restored/Pratica10.v Line: 56
-Warning (10230): Verilog HDL assignment warning at VGASync.v(68): truncated value with size 32 to match size of target (10) File: C:/Users/guilherme.maia/Desktop/Pratica10/Pratica10_restored/VGASync.v Line: 68
-Warning (10230): Verilog HDL assignment warning at VGASync.v(78): truncated value with size 32 to match size of target (10) File: C:/Users/guilherme.maia/Desktop/Pratica10/Pratica10_restored/VGASync.v Line: 78
-Info (12128): Elaborating entity "PixelGen" for hierarchy "PixelGen:px_gen" File: C:/Users/guilherme.maia/Desktop/Pratica10/Pratica10_restored/Pratica10.v Line: 68
-Info (12128): Elaborating entity "Square" for hierarchy "PixelGen:px_gen|Square:sq" File: C:/Users/guilherme.maia/Desktop/Pratica10/Pratica10_restored/PixelGen.v Line: 29
-Info (12128): Elaborating entity "DirectionController" for hierarchy "PixelGen:px_gen|Square:sq|DirectionController:comb_560" File: C:/Users/guilherme.maia/Desktop/Pratica10/Pratica10_restored/Square.v Line: 59
+Info (12128): Elaborating entity "AsyncInputSynchronizer" for hierarchy "AsyncInputSynchronizer:comb_5" File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/Pratica10.v Line: 36
+Info (12128): Elaborating entity "EdgeDetector" for hierarchy "EdgeDetector:right_key" File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/Pratica10.v Line: 41
+Info (12128): Elaborating entity "VGASync" for hierarchy "VGASync:vsync_unit" File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/Pratica10.v Line: 56
+Warning (10230): Verilog HDL assignment warning at VGASync.v(68): truncated value with size 32 to match size of target (10) File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/VGASync.v Line: 68
+Warning (10230): Verilog HDL assignment warning at VGASync.v(78): truncated value with size 32 to match size of target (10) File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/VGASync.v Line: 78
+Info (12128): Elaborating entity "PixelGen" for hierarchy "PixelGen:px_gen" File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/Pratica10.v Line: 68
+Warning (12125): Using design file paddle.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: Paddle File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/paddle.v Line: 1
+Critical Warning (10846): Verilog HDL Instantiation warning at paddle.v(58): instance has no name File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/paddle.v Line: 58
+Info (12128): Elaborating entity "Paddle" for hierarchy "PixelGen:px_gen|Paddle:sq" File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/PixelGen.v Line: 29
+Warning (10240): Verilog HDL Always Construct warning at paddle.v(42): inferring latch(es) for variable "y_count", which holds its previous value in one or more paths through the always construct File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/paddle.v Line: 42
+Info (10041): Inferred latch for "y_count[0]" at paddle.v(42) File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/paddle.v Line: 42
+Info (12128): Elaborating entity "DirectionController" for hierarchy "PixelGen:px_gen|Paddle:sq|DirectionController:comb_490" File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/paddle.v Line: 58
+Info (12128): Elaborating entity "Ball" for hierarchy "PixelGen:px_gen|Ball:bl" File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/PixelGen.v Line: 42
+Warning (10230): Verilog HDL assignment warning at Ball.v(25): truncated value with size 32 to match size of target (10) File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/Ball.v Line: 25
+Warning (10230): Verilog HDL assignment warning at Ball.v(26): truncated value with size 32 to match size of target (10) File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/Ball.v Line: 26
+Warning (10230): Verilog HDL assignment warning at Ball.v(27): truncated value with size 32 to match size of target (10) File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/Ball.v Line: 27
+Warning (10230): Verilog HDL assignment warning at Ball.v(28): truncated value with size 32 to match size of target (10) File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/Ball.v Line: 28
+Warning (10230): Verilog HDL assignment warning at Ball.v(36): truncated value with size 32 to match size of target (10) File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/Ball.v Line: 36
+Warning (10230): Verilog HDL assignment warning at Ball.v(41): truncated value with size 32 to match size of target (10) File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/Ball.v Line: 41
+Warning (10230): Verilog HDL assignment warning at Ball.v(46): truncated value with size 32 to match size of target (10) File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/Ball.v Line: 46
+Warning (10230): Verilog HDL assignment warning at Ball.v(52): truncated value with size 32 to match size of target (10) File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/Ball.v Line: 52
+Warning (10230): Verilog HDL assignment warning at Ball.v(61): truncated value with size 32 to match size of target (10) File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/Ball.v Line: 61
+Warning (10230): Verilog HDL assignment warning at Ball.v(63): truncated value with size 32 to match size of target (10) File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/Ball.v Line: 63
+Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Info (13000): Registers with preset signals will power-up high File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/paddle.v Line: 34
+Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "VGA_G[0]" is stuck at GND File: C:/Users/guilherme.maia/Desktop/Pratica10/Pratica10_restored/Pratica10.v Line: 19
-    Warning (13410): Pin "VGA_G[2]" is stuck at GND File: C:/Users/guilherme.maia/Desktop/Pratica10/Pratica10_restored/Pratica10.v Line: 19
-    Warning (13410): Pin "VGA_R[1]" is stuck at GND File: C:/Users/guilherme.maia/Desktop/Pratica10/Pratica10_restored/Pratica10.v Line: 21
-    Warning (13410): Pin "VGA_R[3]" is stuck at GND File: C:/Users/guilherme.maia/Desktop/Pratica10/Pratica10_restored/Pratica10.v Line: 21
+    Warning (13410): Pin "VGA_G[0]" is stuck at GND File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/Pratica10.v Line: 19
+    Warning (13410): Pin "VGA_G[2]" is stuck at GND File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/Pratica10.v Line: 19
 Info (286030): Timing-Driven Synthesis is running
-Info (17049): 2 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 9 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "SW[1]" File: C:/Users/guilherme.maia/Desktop/Pratica10/Pratica10_restored/Pratica10.v Line: 15
-    Warning (15610): No output dependent on input pin "SW[2]" File: C:/Users/guilherme.maia/Desktop/Pratica10/Pratica10_restored/Pratica10.v Line: 15
-    Warning (15610): No output dependent on input pin "SW[3]" File: C:/Users/guilherme.maia/Desktop/Pratica10/Pratica10_restored/Pratica10.v Line: 15
-    Warning (15610): No output dependent on input pin "SW[4]" File: C:/Users/guilherme.maia/Desktop/Pratica10/Pratica10_restored/Pratica10.v Line: 15
-    Warning (15610): No output dependent on input pin "SW[5]" File: C:/Users/guilherme.maia/Desktop/Pratica10/Pratica10_restored/Pratica10.v Line: 15
-    Warning (15610): No output dependent on input pin "SW[6]" File: C:/Users/guilherme.maia/Desktop/Pratica10/Pratica10_restored/Pratica10.v Line: 15
-    Warning (15610): No output dependent on input pin "SW[7]" File: C:/Users/guilherme.maia/Desktop/Pratica10/Pratica10_restored/Pratica10.v Line: 15
-    Warning (15610): No output dependent on input pin "SW[8]" File: C:/Users/guilherme.maia/Desktop/Pratica10/Pratica10_restored/Pratica10.v Line: 15
-    Warning (15610): No output dependent on input pin "SW[9]" File: C:/Users/guilherme.maia/Desktop/Pratica10/Pratica10_restored/Pratica10.v Line: 15
-Info (21057): Implemented 480 device resources after synthesis - the final resource count might be different
+    Warning (15610): No output dependent on input pin "SW[1]" File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/Pratica10.v Line: 15
+    Warning (15610): No output dependent on input pin "SW[2]" File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/Pratica10.v Line: 15
+    Warning (15610): No output dependent on input pin "SW[3]" File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/Pratica10.v Line: 15
+    Warning (15610): No output dependent on input pin "SW[4]" File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/Pratica10.v Line: 15
+    Warning (15610): No output dependent on input pin "SW[5]" File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/Pratica10.v Line: 15
+    Warning (15610): No output dependent on input pin "SW[6]" File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/Pratica10.v Line: 15
+    Warning (15610): No output dependent on input pin "SW[7]" File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/Pratica10.v Line: 15
+    Warning (15610): No output dependent on input pin "SW[8]" File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/Pratica10.v Line: 15
+    Warning (15610): No output dependent on input pin "SW[9]" File: C:/Users/guilherme.maia.AD/Downloads/Pratica10/Pratica10_restored/Pratica10.v Line: 15
+Info (21057): Implemented 389 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 13 input pins
     Info (21059): Implemented 14 output pins
-    Info (21061): Implemented 453 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 20 warnings
-    Info: Peak virtual memory: 689 megabytes
-    Info: Processing ended: Tue Jan 21 19:00:17 2025
-    Info: Elapsed time: 00:00:36
-    Info: Total CPU time (on all processors): 00:00:45
+    Info (21061): Implemented 362 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 34 warnings
+    Info: Peak virtual memory: 678 megabytes
+    Info: Processing ended: Mon Feb 10 19:34:13 2025
+    Info: Elapsed time: 00:00:20
+    Info: Total CPU time (on all processors): 00:00:42
 
 
